@@ -1,0 +1,89 @@
+这个文件就是一个git使用的笔记
+
+1.建立一个本地仓库  进入项目的工程目录
+  使用命令 ：git init
+
+2.将代码提交到本地仓库
+git  add .      后面跟的是要提交的文件名
+
+git commit -m "new branch commit"  这个是将缓冲区的代码文件提价到本地仓库中
+
+3.在本地仓库建立一个与远程仓库的别名，以便之后提交代码而不是每次都要输入远程仓库的地址。 
+指令结尾是git的仓库地址，我是用的是shh连接方式
+
+git remote add origin git@github.com:yyyy/lllll.git
+
+4.此时我要把本地的代码提交到远程仓库上，步骤如下
+	1）首先建立本地的分支，并切换到改分支上（本地建立完分支，默认是在master分支上）
+	git branch hello_git_branch      // 这个是建立新的分支的命令
+ 
+	git checkout hello_git_branch   //这个是切换分支
+
+	2）将分支push到远程仓库上面
+	git push origin hello_git_branch 
+	
+	说明:由于我们刚才为远程仓库起了一个别名，那么这里就可以使用别名orgin调用
+	这里的含义是将hello_git_branch 这个分支提交到远程仓库上面。如果远程仓库没有这个分支，那么也会新建
+	一个该分支。
+
+	还有一种方法，可以制定提交到远程仓库的某个分支上。如下，是将hello_git_branch 分支提交到远程仓库的
+	master上面
+
+	git push origin hello_git_branch:master
+
+拓展：
+	如果本地当前是在hello_git_branch 分支上面，此时想把远程仓库的master 与我的hello_git_branch 分支
+	合并（merge) 可以使用以下命令
+	
+	git pull origin hello_git_branch:master
+
+	
+	如果您使用如下指令，含义就是将远程仓库的master 分支合并下来。如果本地没有master分支，那么本地就
+	新建一个master分支
+	
+	git pull master
+
+每次同步最新的代码使用的命令
+git pull git@github.com:xxxxxxxxx/yyyyyy.git
+
+
+将写好的程序推送到github上面  使用的命令
+git push git@github.com:xxxxxxxx/yyyyyyyy.git
+
+#########################################
+
+
+分支使用的一些笔记   这个分支使用的笔记我写到了how_learn_english 这个分支上去了
+
+查看本地分支和远程分支
+
+git branch -a
+
+查看本地分支
+git branch
+
+创建分支
+git branch test  [test 这个就是要创建分支的名称]
+
+切换分支 
+
+git checkout master [master 这就是你要切换分支的名称]
+
+
+如果想把本地的某个分支test提交到远程仓库，并作为远程仓库的master分支，或者作为另外一个名叫test的分支，
+那么可以这么做。
+
+$ git push origin test:master         // 提交本地test分支作为远程的master分支
+$ git push origin test:test              // 提交本地test分支作为远程的test分支
+
+如果想删除远程的分支呢？
+类似于上面，如果:左边的分支为空，那么将删除:右边的远程的分支。
+
+$ git push origin :test              // 刚提交到远程的test将被删除，但是本地还会保存的，不用担心
+
+
+
+
+
+
+
